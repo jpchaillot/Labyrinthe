@@ -3,6 +3,8 @@
 let cell_size = 100;
 let grid_size_y;
 let grid_size_x;
+let tableau;
+let ligne;
 
 function init_css_properties() {
 
@@ -15,22 +17,31 @@ function init_css_properties() {
     // document.querySelector("#grid").style.width = (cell_size * grid_size_x).toString(10) + "px";
     // document.querySelector("#grid").style.height = (cell_size * grid_size_y).toString(10) + "px";
 
-    grid_size_y = Math.floor(window.innerWidth / cell_size);
-    grid_size_x = Math.floor(window.innerHeight / cell_size);
+    grid_size_x = Math.floor(window.innerWidth / cell_size);
+    grid_size_y = Math.floor(window.innerHeight / cell_size);
 
-    document.querySelector("#grid").style.width = (grid_size_y * cell_size).toString(10) + "px";
-    document.querySelector("#grid").style.height = (grid_size_x * cell_size).toString(10) + "px";
+    document.querySelector("#grid").style.width = (grid_size_x * cell_size).toString(10) + "px";
+    document.querySelector("#grid").style.height = (grid_size_y * cell_size).toString(10) + "px";
 }
 
 window.onload = function () {
     init_css_properties();
     generate_grid();
 
+    generate_empty_tableau();
+    console.log('variable tableau : avant ', tableau)
+    tableau[1][1] = 1;
+    tableau[5][5] = 1;
+    console.log('variable tableau : apres', tableau)
+
+    dessine_tableau();
+
+
+
+
     window.addEventListener('resize', () => {
         clear();
     });
-
-
 
     // visualizer_event_listeners();
     // menu_event_listeners();
@@ -38,6 +49,40 @@ window.onload = function () {
     // document.querySelector("#hider").style.visibility = "hidden";
 }
 
+function dessine_tableau() {
+    console.log('variable tableau : ', tableau)
+    for (let i = 0; i < tableau.length; i++) {
+        const ligne = tableau[i];
+        for (let j = 0; j < ligne.length; j++) {
+            const cellule = ligne[j];
+            let class_name = "x_" + i.toString(10) + " y_" + j.toString(10);
+            let rep = document.getElementsByClassName(class_name)
+            // console.log('variable i : ', i)
+            // console.log('variable j : ', j)
+            // console.log('variable tableau[i][j] : ', tableau[i][j])
+            if (tableau[i][j] == 1) {
+                rep[0].style.backgroundColor = 'black';
+            }
+            // console.log('variable rep[0] : ', rep[0])
+        }
+
+    }
+
+
+}
+
+function generate_empty_tableau() {
+    tableau = new Array()
+    ligne = new Array()
+    for (let index = 0; index < grid_size_y; index++) {
+        ligne.push(0)
+    }
+    for (let index = 0; index < grid_size_x; index++) {
+        tableau.push([...ligne])
+    }
+    console.log('variable tableau : ', tableau)
+
+}
 
 function generate_grid() {
 
@@ -86,4 +131,6 @@ function generate_grid() {
     // place_to_cell(start_pos[0], start_pos[1]).classList.add("start");
     // place_to_cell(target_pos[0], target_pos[1]).classList.add("target");
 }
+
+
 
