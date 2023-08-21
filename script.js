@@ -1,14 +1,14 @@
 "use strict";
-
+ 
 let cell_size = 100;
-let grid_size_y;
 let grid_size_x;
+let grid_size_y;
 let tableau;
 let ligne;
 
 function init_css_properties() {
 
-
+ 
     // document.querySelector("#menu").style.width = menu_width.toString(10) + "px";
     // document.querySelector("#visualizer").style.width = (window.innerWidth - menu_width).toString(10) + "px";
     // document.querySelector("#visualizer").style.left = menu_width.toString(10) + "px";
@@ -62,7 +62,7 @@ function dessine_tableau() {
             // console.log('variable tableau[i][j] : ', tableau[i][j])
             if (tableau[i][j] == 1) {
                 // rep[0].style.backgroundColor = 'black';
-                let color = 461
+                let color = 200
                 rep[0].style.backgroundColor = `hsl(${color}, 50%, 50%)`;
                 console.log('variable rep[0] : ', rep[0])
             }
