@@ -61,7 +61,10 @@ function dessine_tableau() {
             // console.log('variable j : ', j)
             // console.log('variable tableau[i][j] : ', tableau[i][j])
             if (tableau[i][j] == 1) {
-                rep[0].style.backgroundColor = 'black';
+                // rep[0].style.backgroundColor = 'black';
+                let color = 461
+                rep[0].style.backgroundColor = `hsl(${color}, 50%, 50%)`;
+                console.log('variable rep[0] : ', rep[0])
             }
             // console.log('variable rep[0] : ', rep[0])
         }
